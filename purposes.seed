@@ -1,33 +1,42 @@
 ---
 # add your purpose tree here
-sales:
-  id: 1
-  name: sales
+health:
+  name: health
   children:
-    calls:
-      id: 3
-      name: sales_calls
-marketing:
-  id: 2
-  name: marketing
+    summaries:
+      name: health_summaries
+    recommendations:
+      name: health_recommendations
+    analysis:
+      name: health_analysis
+insurance:
+  name: insurance
   children:
-    external:
-      id: 6
-      name: external_marketing
+    discounts:
+      name: insurance_discounts
+    liability:
+      name: insurance_liability
+research:
+  name: research
+  children:
+    cancer:
+      name: cancer_research
+    military:
+      name: military_research
+advertisement:
+  name: advertisement
+  children:
+    internal:
+      name: internal_advertisement
       children:
+        telephone:
+          name: internal_telephone_advertisement
         email:
-          id: 7
-          name: external_marketing_email
-          children:
-            annoying_emails:
-              id: 8
-              name: annoying_external_marketing_emails
-            useful_emails:
-              id: 9
-              name: useful_external_marketing_emails
-    email:
-      id: 4
-      name: email
-    telephone:
-      id: 5
-      name: telephone
+          name: internal_email_advertisement
+    external:
+      name: external_advertisement
+      children:
+        telephone:
+          name: external_telephone_advertisement
+        email:
+          name: external_email_advertisement

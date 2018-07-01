@@ -1,35 +1,65 @@
 ---
-sales:
+health:
   id: 1
-  name: sales
-sales_calls:
+  name: health
+health_summaries:
   id: 2
-  name: sales_calls
+  name: health_summaries
   parent_id: 1
-marketing:
+health_recommendations:
   id: 3
-  name: marketing
-external_marketing:
+  name: health_recommendations
+  parent_id: 1
+health_analysis:
   id: 4
-  name: external_marketing
-  parent_id: 3
-external_marketing_email:
+  name: health_analysis
+  parent_id: 1
+insurance:
   id: 5
-  name: external_marketing_email
-  parent_id: 4
-annoying_external_marketing_emails:
+  name: insurance
+insurance_discounts:
   id: 6
-  name: annoying_external_marketing_emails
+  name: insurance_discounts
   parent_id: 5
-useful_external_marketing_emails:
+insurance_liability:
   id: 7
-  name: useful_external_marketing_emails
+  name: insurance_liability
   parent_id: 5
-email:
+research:
   id: 8
-  name: email
-  parent_id: 3
-telephone:
+  name: research
+cancer_research:
   id: 9
-  name: telephone
-  parent_id: 3
+  name: cancer_research
+  parent_id: 8
+military_research:
+  id: 10
+  name: military_research
+  parent_id: 8
+advertisement:
+  id: 11
+  name: advertisement
+internal_advertisement:
+  id: 12
+  name: internal_advertisement
+  parent_id: 11
+internal_telephone_advertisement:
+  id: 13
+  name: internal_telephone_advertisement
+  parent_id: 12
+internal_email_advertisement:
+  id: 14
+  name: internal_email_advertisement
+  parent_id: 12
+external_advertisement:
+  id: 15
+  name: external_advertisement
+  parent_id: 11
+external_telephone_advertisement:
+  id: 16
+  name: external_telephone_advertisement
+  parent_id: 15
+external_email_advertisement:
+  id: 17
+  name: external_email_advertisement
+  parent_id: 15
