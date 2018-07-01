@@ -80,6 +80,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
+    awesome_print (1.8.0)
     bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.2)
@@ -194,6 +195,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash (~> 2.1)
+  awesome_print
   byebug
   capybara (>= 2.15)
   chromedriver-helper
