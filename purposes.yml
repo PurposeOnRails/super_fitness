@@ -1,0 +1,35 @@
+---
+sales:
+  id: 1
+  name: sales
+marketing:
+  id: 2
+  name: marketing
+sales_calls:
+  id: 3
+  name: sales_calls
+  parent_id: 1
+email:
+  id: 4
+  name: email
+  parent_id: 2
+telephone:
+  id: 5
+  name: telephone
+  parent_id: 2
+external_marketing:
+  id: 6
+  name: external_marketing
+  parent_id: 2
+external_marketing_email:
+  id: 7
+  name: external_marketing_email
+  parent_id: 6
+annoying_external_marketing_emails:
+  id: 8
+  name: annoying_external_marketing_emails
+  parent_id: 7
+useful_external_marketing_emails:
+  id: 9
+  name: useful_external_marketing_emails
+  parent_id: 7

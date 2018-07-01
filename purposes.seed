@@ -1,0 +1,33 @@
+---
+# add your purpose tree here
+sales:
+  id: 1
+  name: sales
+  children:
+    calls:
+      id: 3
+      name: sales_calls
+marketing:
+  id: 2
+  name: marketing
+  children:
+    external:
+      id: 6
+      name: external_marketing
+      children:
+        email:
+          id: 7
+          name: external_marketing_email
+          children:
+            annoying_emails:
+              id: 8
+              name: annoying_external_marketing_emails
+            useful_emails:
+              id: 9
+              name: useful_external_marketing_emails
+    email:
+      id: 4
+      name: email
+    telephone:
+      id: 5
+      name: telephone
