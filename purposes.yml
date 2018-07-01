@@ -2,34 +2,34 @@
 sales:
   id: 1
   name: sales
-marketing:
-  id: 2
-  name: marketing
 sales_calls:
-  id: 3
+  id: 2
   name: sales_calls
   parent_id: 1
-email:
-  id: 4
-  name: email
-  parent_id: 2
-telephone:
-  id: 5
-  name: telephone
-  parent_id: 2
+marketing:
+  id: 3
+  name: marketing
 external_marketing:
-  id: 6
+  id: 4
   name: external_marketing
-  parent_id: 2
+  parent_id: 3
 external_marketing_email:
-  id: 7
+  id: 5
   name: external_marketing_email
-  parent_id: 6
+  parent_id: 4
 annoying_external_marketing_emails:
-  id: 8
+  id: 6
   name: annoying_external_marketing_emails
-  parent_id: 7
+  parent_id: 5
 useful_external_marketing_emails:
-  id: 9
+  id: 7
   name: useful_external_marketing_emails
-  parent_id: 7
+  parent_id: 5
+email:
+  id: 8
+  name: email
+  parent_id: 3
+telephone:
+  id: 9
+  name: telephone
+  parent_id: 3

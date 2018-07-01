@@ -2,16 +2,17 @@ def parse(purpose, pid)
   return {} if purpose.nil?
   purposes = {}
 
-  id = purpose['id']
+  node_id = $id
   name = purpose['name']
 
   if purpose['children']
     purpose['children'].each do |_, value|
-      purposes.merge!(parse(value, id))
+      $id += 1
+      purposes.merge!(parse(value, node_id))
     end
   end
 
-  le_hash = { 'id' => id, 'name' => name }
+  le_hash = { 'id' => node_id, 'name' => name }
   le_hash['parent_id'] = pid unless pid.nil?
 
   purposes.merge!(name => le_hash)
@@ -20,12 +21,14 @@ def parse(purpose, pid)
 end
 
 require 'yaml'
-stuff = YAML.load_file('purposes.seed')
+tree = YAML.load_file('purposes.seed')
 
 purposes = {}
 
-stuff.each do |key, value|
-  purposes.merge!(parse(value, nil))
+$id = 0
+tree.each do |_, node|
+  $id += 1
+  purposes.merge!(parse(node, nil))
 end
 
 purposes = purposes.sort_by { |key, value| value['id'] }.to_h

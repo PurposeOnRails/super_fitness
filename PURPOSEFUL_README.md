@@ -10,7 +10,6 @@ file. If you encounter any errors, your schema is most likely corrupt.
 
 Things to note:
 - every purpose needs the following attributes
-  - id: a counting id (unique!)
-  - name: an identifying name (unique!)
+  - name: a descriptive, identifying name (unique!)
   - children: embedded child purposes (optional)
 - node names are ignored, only the name attribute is used
