@@ -143,6 +143,8 @@ GEM
     rack (2.0.5)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
+    rails-controller-testing (0.0.3)
+      rails (>= 4.2)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -207,6 +209,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails!
+  rails-controller-testing
   sass-rails (~> 5.0)
   selenium-webdriver
   turbolinks (~> 5)

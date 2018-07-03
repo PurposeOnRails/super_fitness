@@ -29,6 +29,8 @@ gem 'active_hash', '~> 2.1'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'rails-controller-testing'
+
 # Use ActiveStorage variant
 # gem 'image_processing', '~> 1.2'
 
