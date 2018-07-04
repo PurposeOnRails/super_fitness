@@ -27,7 +27,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveYaml for Purpose Storage
 gem 'active_hash', '~> 2.1'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'rails-controller-testing'
+
+gem 'bootstrap'
+gem 'jquery-rails'
 
 # Use ActiveStorage variant
 # gem 'image_processing', '~> 1.2'
