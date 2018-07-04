@@ -13,6 +13,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     post login_path, params: { session: { email: '', password: '' } }
     assert_template 'sessions/new'
-    assert_not flash.empty?
+    assert flash[:danger] == 'Password or email not valid'
   end
 end
