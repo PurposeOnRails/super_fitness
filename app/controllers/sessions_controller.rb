@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :redirect_if_logged_in, only: [:new, :create]
+
   def new
   end
 
@@ -17,4 +19,12 @@ class SessionsController < ApplicationController
     log_out
     redirect_to login_path
   end
+
+  private
+
+    def redirect_if_logged_in
+      if logged_in?
+        redirect_to user_path(current_user)
+      end
+    end
 end
