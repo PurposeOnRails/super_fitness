@@ -62,4 +62,28 @@ class UserTest < ActiveSupport::TestCase
     @user.password = '1234567'
     assert_not @user.valid?
   end
+
+  test 'can create and access StepDayLogs' do
+    @user.save
+    @user.step_day_logs.create(step_count: 9578, date: Date.yesterday)
+    @user.step_day_logs.create(step_count: 10_556, date: Date.today)
+
+    assert_equal 2, @user.step_day_logs.count
+    assert_equal 10_556,
+      @user.step_day_logs.find_by(date: Date.today).step_count
+  end
+
+  test 'can create and access HeartRateLogs' do
+    @user.save
+    @user.heart_rate_logs.create(
+      heart_rate: { some: 'json' }.to_json, date: Date.yesterday
+    )
+    @user.heart_rate_logs.create(
+      heart_rate: { more: 'json!' }.to_json, date: Date.today
+    )
+
+    assert_equal 2, @user.heart_rate_logs.count
+    assert_equal ({ some: 'json' }.to_json),
+      @user.heart_rate_logs.find_by(date: Date.yesterday).heart_rate
+  end
 end

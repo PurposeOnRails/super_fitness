@@ -1,0 +1,2 @@
+class StepDayLog < ApplicationRecord
+end

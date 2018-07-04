@@ -14,6 +14,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :step_day_logs
+  has_many :heart_rate_logs
+
   def User.digest(string)
     cost = \
       if ActiveModel::SecurePassword.min_cost
