@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_01_203957) do
+ActiveRecord::Schema.define(version: 2018_07_04_175208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "heart_rate_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.json "heart_rate"
+    t.date "date"
+    t.index ["user_id"], name: "index_heart_rate_logs_on_user_id"
+  end
+
+  create_table "step_day_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "step_count"
+    t.date "date"
+    t.index ["user_id"], name: "index_step_day_logs_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,6 +37,14 @@ ActiveRecord::Schema.define(version: 2018_07_01_203957) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date_of_birth"
+    t.string "date_of_birth_aip"
+    t.string "gender"
+    t.string "gender_aip"
+    t.string "phone_number"
+    t.string "phone_number_aip"
+    t.string "step_day_logs_aip"
+    t.string "heart_rate_logs_aip"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
