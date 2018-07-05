@@ -1,10 +1,12 @@
 class ApiController < ApplicationController
   def retrieve_user
-    render json: { user_id: id, purpose: purpose }.to_json
+    user = User.find(id) #.for(purpose)
+    render json: user.as_json
   end
 
   def retrieve_all_users
-    render json: { purpose: purpose }.to_json
+    users = User.all #.for(purpose)
+    render json: users.map(&:as_json)
   end
 
   def id
