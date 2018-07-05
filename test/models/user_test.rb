@@ -90,12 +90,19 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'as_json return appropriate data' do
+    @user.save
+    @user.heart_rate_logs.create(heart_rate: { some: 'json' }.to_json, date: Date.today)
+    @user.step_day_logs.create(step_count: 1234, date: Date.yesterday)
+    @user.step_day_logs.create(step_count: 9999, date: Date.today)
+
     assert_equal ({
       name: @user.name,
       email: @user.email,
       date_of_birth: @user.date_of_birth,
       gender: @user.gender,
-      phone_number: nil
+      phone_number: nil,
+      steps: @user.step_day_logs.as_json,
+      heart_rate: @user.heart_rate_logs.as_json,
     }), @user.as_json
   end
 end

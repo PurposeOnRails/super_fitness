@@ -33,7 +33,9 @@ class User < ApplicationRecord
       email: self.email,
       date_of_birth: self.date_of_birth,
       gender: self.gender,
-      phone_number: self.phone_number
+      phone_number: self.phone_number,
+      steps: self.step_day_logs.map(&:as_json),
+      heart_rate: self.heart_rate_logs.map(&:as_json)
     }
   end
 end
