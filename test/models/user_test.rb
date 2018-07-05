@@ -6,7 +6,9 @@ class UserTest < ActiveSupport::TestCase
       name: 'George Washington',
       email: 'first@president.gov',
       password: 'some_password',
-      password_confirmation: 'some_password'
+      password_confirmation: 'some_password',
+      date_of_birth: Date.new(1732, 2, 22),
+      gender: 'male'
     )
   end
 
@@ -85,5 +87,15 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, @user.heart_rate_logs.count
     assert_equal ({ some: 'json' }.to_json),
       @user.heart_rate_logs.find_by(date: Date.yesterday).heart_rate
+  end
+
+  test 'as_json return appropriate data' do
+    assert_equal ({
+      name: @user.name,
+      email: @user.email,
+      date_of_birth: @user.date_of_birth,
+      gender: @user.gender,
+      phone_number: nil
+    }), @user.as_json
   end
 end
