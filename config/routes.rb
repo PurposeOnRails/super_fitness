@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  get    '/api/user/:id/purpose/:purpose',
+  get    '/api/user/:id/purpose/:code',
     to: 'api#retrieve_user'
 
-  get    '/api/users/purpose/:purpose',
+  get    '/api/users/purpose/:code',
     to: 'api#retrieve_all_users'
 
   root 'sessions#new'

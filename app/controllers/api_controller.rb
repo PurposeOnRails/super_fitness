@@ -14,6 +14,6 @@ class ApiController < ApplicationController
   end
 
   def purpose
-    @purpose ||= params[:purpose]
+    @purpose ||= AccessCode.find_by(code: params[:code]).purpose_id
   end
 end
