@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   post   '/signup',  to: 'users#create'
   resources :users
 
+  resources :heart_rate_logs
+  resources :step_day_logs
+
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
