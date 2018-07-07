@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   get    'sessions/new'
   get    '/signup',  to: 'users#new'
   post   '/signup',  to: 'users#create'
+  
   resources :users
-
+  resources :access_codes
   resources :heart_rate_logs
   resources :step_day_logs
 
