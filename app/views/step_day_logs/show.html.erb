@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Step count:</strong>
+  <%= @step_day_log.step_count %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @step_day_log.date %>
+</p>
+
+<%= link_to 'Edit', edit_step_day_log_path(@step_day_log) %> |
+<%= link_to 'Back', step_day_logs_path %>

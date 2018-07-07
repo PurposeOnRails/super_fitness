@@ -1,0 +1,2 @@
+module HeartRateLogsHelper
+end
