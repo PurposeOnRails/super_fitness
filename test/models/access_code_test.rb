@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AccessCodeTest < ActiveSupport::TestCase
   def setup
-    @ac = AccessCode.new(description: 'For research', purpose_id: 1)
+    @ac = AccessCode.new(description: 'Charite Cancer Research', purpose_id: 9)
   end
 
   test 'it generates a random code of length 32' do
@@ -12,8 +12,8 @@ class AccessCodeTest < ActiveSupport::TestCase
 
   test 'it ignores a given code' do
     ac = AccessCode.new(
-      description: 'For charite cancer reserach',
-      purpose_id: 3,
+      description: 'Charite Cancer Reserach',
+      purpose_id: 9,
       code: 'an insecure code'
     )
     ac.save
