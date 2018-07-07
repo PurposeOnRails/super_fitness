@@ -3,6 +3,7 @@ class AccessCode < ApplicationRecord
 
   validates :description, presence: true
   validates :purpose_id, presence: true
+  validates :code, presence: true, uniqueness: true, length: { is: 32 }
 
   # belongs_to :purpose
 
