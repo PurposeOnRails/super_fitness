@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Step Day Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Step count</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @step_day_logs.each do |step_day_log| %>
+      <tr>
+        <td><%= step_day_log.step_count %></td>
+        <td><%= step_day_log.date %></td>
+        <td><%= link_to 'Show', step_day_log %></td>
+        <td><%= link_to 'Edit', edit_step_day_log_path(step_day_log) %></td>
+        <td><%= link_to 'Destroy', step_day_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Step Day Log', new_step_day_log_path %>

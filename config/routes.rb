@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :heart_rate_logs
+  resources :step_day_logs
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
