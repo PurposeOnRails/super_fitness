@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Heart rate:</strong>
+  <%= @heart_rate_log.heart_rate %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @heart_rate_log.date %>
+</p>
+
+<%= link_to 'Edit', edit_heart_rate_log_path(@heart_rate_log) %> |
+<%= link_to 'Back', heart_rate_logs_path %>

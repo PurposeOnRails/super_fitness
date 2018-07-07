@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Heart Rate Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Heart rate</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @heart_rate_logs.each do |heart_rate_log| %>
+      <tr>
+        <td><%= heart_rate_log.heart_rate %></td>
+        <td><%= heart_rate_log.date %></td>
+        <td><%= link_to 'Show', heart_rate_log %></td>
+        <td><%= link_to 'Edit', edit_heart_rate_log_path(heart_rate_log) %></td>
+        <td><%= link_to 'Destroy', heart_rate_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Heart Rate Log', new_heart_rate_log_path %>
