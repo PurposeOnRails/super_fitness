@@ -2,7 +2,10 @@ require 'test_helper'
 
 class HeartRateLogsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @heart_rate_log = heart_rate_logs(:one)
+    @heart_rate_log = HeartRateLog.new(
+      heart_rate: { some: 'json' }.to_json,
+      date: Date.today
+    )
   end
 
   test "should get index" do
