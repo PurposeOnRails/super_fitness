@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 2018_07_07_073041) do
   create_table "access_codes", force: :cascade do |t|
     t.string "description"
     t.string "code"
-    t.integer "purpose_id"
+    t.bigint "purpose_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["purpose_id"], name: "index_access_codes_on_purpose_id"
   end
 
   create_table "heart_rate_logs", force: :cascade do |t|

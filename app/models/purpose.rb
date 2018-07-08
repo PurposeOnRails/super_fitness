@@ -8,5 +8,9 @@ class Purpose < ActiveYaml::Base
   has_many :children, class_name: "Purpose", foreign_key: "parent_id"
   belongs_to :parent, class_name: "Purpose"
 
-  # has_many :access_codes
+  has_many :access_codes
+
+  def to_s
+    self.name
+  end
 end
