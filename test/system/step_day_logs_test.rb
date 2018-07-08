@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class StepDayLogsTest < ApplicationSystemTestCase
   setup do
-    @step_day_log = step_day_logs(:one)
+    @step_day_log = StepDayLog.new(step_count: 123, date: Date.today)
+    @step_day_log.save
   end
 
   test "visiting the index" do

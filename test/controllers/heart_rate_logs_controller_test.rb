@@ -6,6 +6,7 @@ class HeartRateLogsControllerTest < ActionDispatch::IntegrationTest
       heart_rate: { some: 'json' }.to_json,
       date: Date.today
     )
+    @heart_rate_log.save
   end
 
   test "should get index" do
