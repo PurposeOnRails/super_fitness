@@ -6,18 +6,13 @@
 </p>
 
 <p>
-  <strong>Purpose:</strong>
-  <%= @purpose.name %>
-</p>
-
-<p>
-  <strong>Purpose Id:</strong>
-  <%= @access_code.purpose_id %>
-</p>
-
-<p>
   <strong>Code:</strong>
   <%= @access_code.code %>
+</p>
+
+<p>
+  <strong>Purpose:</strong>
+  <%= @access_code.purpose %>
 </p>
 
 <%= link_to 'Edit', edit_access_code_path(@access_code) %> |

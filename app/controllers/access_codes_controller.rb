@@ -10,7 +10,6 @@ class AccessCodesController < ApplicationController
   # GET /access_codes/1
   # GET /access_codes/1.json
   def show
-    @purpose = Purpose.find(@access_code.purpose_id)
   end
 
   # GET /access_codes/new
@@ -70,6 +69,6 @@ class AccessCodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def access_code_params
-      params.require(:access_code).permit(:description, :purpose_id, :code)
+      params.require(:access_code).permit(:description, :code, :purpose_id)
     end
 end

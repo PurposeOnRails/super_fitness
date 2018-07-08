@@ -9,4 +9,8 @@ class Purpose < ActiveYaml::Base
   belongs_to :parent, class_name: "Purpose"
 
   has_many :access_codes
+
+  def to_s
+    self.name
+  end
 end
