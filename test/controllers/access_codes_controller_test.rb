@@ -2,7 +2,12 @@ require 'test_helper'
 
 class AccessCodesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @access_code = access_codes(:one)
+    @access_code = AccessCode.new(
+      description: 'TU Berlin Cancer Research',
+      code: 'i'*32,
+      purpose: Purpose.find(9)
+    )
+    @access_code.save
   end
 
   test "should get index" do
