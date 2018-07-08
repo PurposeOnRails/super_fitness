@@ -1,0 +1,77 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_aip %>
+    <%= form.text_field :name_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_aip %>
+    <%= form.text_field :email_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth_aip %>
+    <%= form.text_field :date_of_birth_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender_aip %>
+    <%= form.text_field :gender_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number_aip %>
+    <%= form.text_field :phone_number_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :heart_rate_logs_aip %>
+    <%= form.text_field :heart_rate_logs_aip %>
+  </div>
+
+  <div class="field">
+    <%= form.label :step_day_logs_aip %>
+    <%= form.text_field :step_day_logs_aip %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
