@@ -1,0 +1,97 @@
+<style type="text/css">
+    .purpose-selector small
+    {
+        color: #999;
+    }
+</style>
+
+<script type="text/x-template" id="purpose-template" charset="utf-8">
+    <div class="purpose-selector">
+
+        <small>{{ allowed.length }} purposes allowed
+            <a data-toggle="modal" :data-target="'#'+modalName()" href="#">
+                Edit
+            </a>
+        </small>
+
+        <input v-bind:value="get_aip_json()" :name="formName()" readonly type="hidden">
+
+        <!-- start of modal -->
+        <div class="modal fade" :id="modalName()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit allowed Purposes for {{name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-for="p in purposes">
+                            <label class="form-check-label">
+                            <input type="checkbox" :value="p.attributes.id" v-model="allowed">
+                            {{p.attributes.name}}</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Finish</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of modal -->
+    </div>
+</script>
+
+<script>
+
+    Vue.component('purpose-selector', {
+        props: [
+            'entityName',
+            'propertyName',
+            'allowedPurposes',
+        ],
+        data: function () {
+            return {
+                purposes: {},
+                allowed: [],
+            }
+        },
+        beforeMount: function() {
+            this.purposes = this.$parent.purposes;
+            let aIni = JSON.parse(this.allowedPurposes);
+            this.allowed = aIni.allowed_purposes;
+        },
+        template: '#purpose-template',
+        methods: {
+            get_aip_json: function()
+            {
+                let ajson = {
+                    allowed_purposes: this.allowed,
+                };
+                return JSON.stringify(ajson);
+            },
+            formName: function()
+            {
+                return this.entityName + '[' + this.propertyName + '_aip]';
+            },
+            modalName: function()
+            {
+                return this.propertyName + '_modal';
+            }
+        }
+    });
+
+    var app = new Vue({
+        el: '#purpose-enabled',
+        data: {
+            purposes: {},
+        },
+        beforeMount: function() {
+            this.purposes = JSON.parse(this.$el.attributes['data-purposes'].value);
+        }
+    });
+
+
+</script>

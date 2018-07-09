@@ -1,5 +1,5 @@
 <h1>Edit Profile</h1>
-
+<div id="purpose-enabled" data-purposes="<%= @purposes.to_json %>">
 <%= form_for(@user) do |f| %>
   <%= render 'shared/errors' %>
 
@@ -7,22 +7,29 @@
     <div class="col-md-6">
       <div class="form-group"><%= f.label :name %>
         <%= f.text_field :name, :class => "form-control" %>
-        <small>AIP: <code><%= @user.name_aip %></code></small>
+        <purpose-selector entity-name="user" property-name="name" allowed-purposes="<%= @user.name_aip %>"></purpose-selector>
       </div>
 
       <div class="form-group"><%= f.label :date_of_birth %>
-        <%= f.text_field :date_of_birth, :class => "form-control" %></div>
+        <%= f.text_field :date_of_birth, :class => "form-control" %>
+      <purpose-selector entity-name="user" property-name="date_of_birth" allowed-purposes="<%= @user.date_of_birth_aip %>"></purpose-selector>
+      </div>
     </div>
+
     <div class="col-md-6">
 
       <div class="form-group">
         <%= f.label :gender %>
         <%= f.text_field :gender, :class => "form-control" %>
+        <purpose-selector entity-name="user"  property-name="gender" allowed-purposes="<%= @user.gender_aip %>"></purpose-selector>
       </div>
 
       <div class="form-group"><%= f.label :phone_number %>
-        <%= f.text_field :phone_number, :class => "form-control" %></div>
+        <%= f.text_field :phone_number, :class => "form-control" %>
+      <purpose-selector entity-name="user" property-name="phone_number" allowed-purposes="<%= @user.phone_number_aip %>"></purpose-selector>
+      </div>
     </div>
+
   </div>
 
 
@@ -30,54 +37,7 @@
  <% end %>
 
 
-<div id="app" data-purposes="<%= @purposes.to_json %>">
-  <purpose-selector name="test" allowedini="<%= @user.name_aip %>"></purpose-selector>
+
+
 </div>
 
-<script>
-
-    Vue.component('purpose-selector', {
-        props: ['name', 'allowedini'],
-        data: function () {
-            return {
-                purposes: {},
-                allowed: [],
-            }
-        },
-        beforeMount: function() {
-            this.purposes = this.$parent.purposes;
-            let aIni = JSON.parse(this.allowedini);
-            this.allowed = aIni.allowed_purposes;
-
-        },
-        methods: {
-          get_aip_json: function()
-          {
-              let ajson = {
-                  allowed_purposes: this.allowed,
-              };
-              return JSON.stringify(ajson);
-          },
-        },
-        template: '<div class="row">' +
-        '<div class="col-6">' +
-        '<input v-bind:value="get_aip_json()" readonly>' +
-        '<li v-for="p in purposes"><label><input type="checkbox" :value="p.attributes.id" v-model="allowed">{{p.attributes.name}}</label></li>' +
-        '</div> ' +
-        '<div class="col-6"><pre>{{ purposes }}</pre></div>' +
-        '</div>'
-    });
-
-    var app = new Vue({
-        el: '#app',
-        data: {
-            message: 'Hello Vue!',
-            purposes: {},
-        },
-        beforeMount: function() {
-            this.purposes = JSON.parse(this.$el.attributes['data-purposes'].value);
-        }
-    });
-
-
-</script>
