@@ -4,7 +4,7 @@ class HeartRateLogsController < ApplicationController
   # GET /heart_rate_logs
   # GET /heart_rate_logs.json
   def index
-    @heart_rate_logs = HeartRateLog.where(user_id: current_user.id)
+    @heart_rate_logs = HeartRateLog.where(user_id: current_user&.id)
   end
 
   # GET /heart_rate_logs/1
@@ -25,7 +25,7 @@ class HeartRateLogsController < ApplicationController
   # POST /heart_rate_logs.json
   def create
     @heart_rate_log = HeartRateLog.new(heart_rate_log_params)
-    @heart_rate_log.user_id = current_user.id
+    @heart_rate_log.user_id = current_user&.id
 
     respond_to do |format|
       if @heart_rate_log.save

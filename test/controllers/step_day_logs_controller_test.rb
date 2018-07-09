@@ -2,7 +2,8 @@ require 'test_helper'
 
 class StepDayLogsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @log = StepDayLog.new(step_count: 123, date: Date.today)
+    @step_day_log = StepDayLog.new(step_count: 123, date: Date.today)
+    @step_day_log.save
   end
 
   test "should get index" do

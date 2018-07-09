@@ -4,7 +4,7 @@ class StepDayLogsController < ApplicationController
   # GET /step_day_logs
   # GET /step_day_logs.json
   def index
-    @step_day_logs = StepDayLog.where(user_id: current_user.id)
+    @step_day_logs = StepDayLog.where(user_id: current_user&.id)
   end
 
   # GET /step_day_logs/1
@@ -25,7 +25,7 @@ class StepDayLogsController < ApplicationController
   # POST /step_day_logs.json
   def create
     @step_day_log = StepDayLog.new(step_day_log_params)
-    @step_day_log.user_id = current_user.id
+    @step_day_log.user_id = current_user&.id
 
     respond_to do |format|
       if @step_day_log.save
