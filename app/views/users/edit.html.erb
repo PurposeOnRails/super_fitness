@@ -1,0 +1,108 @@
+<h1>Edit Profile</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/errors' %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group"><%= f.label :name %>
+        <%= f.text_field :name, :class => "form-control" %>
+        <small>AIP: <code><%= @user.name_aip %></code></small>
+      </div>
+
+      <div class="form-group"><%= f.label :date_of_birth %>
+        <%= f.text_field :date_of_birth, :class => "form-control" %></div>
+    </div>
+    <div class="col-md-6">
+
+      <div class="form-group">
+        <%= f.label :gender %>
+        <%= f.text_field :gender, :class => "form-control" %>
+      </div>
+
+      <div class="form-group"><%= f.label :phone_number %>
+        <%= f.text_field :phone_number, :class => "form-control" %></div>
+    </div>
+  </div>
+
+
+  <%= f.submit "Save", class: "btn btn-primary" %>
+ <% end %>
+
+
+<div id="app" data-purposes="<%= @purposes.to_json %>">
+  <purpose-selector name="test" allowedini="<%= @user.name_aip %>"></purpose-selector>
+</div>
+
+<script>
+
+    Vue.component('purpose-selector', {
+        props: ['name', 'allowedini'],
+        data: function () {
+            return {
+                purposes: {}
+            }
+        },
+        beforeMount: function() {
+            this.purposes = this.$parent.purposes;
+            let purposes = this.purposes; // for map
+            let aIni = JSON.parse(this.allowedini);
+            console.log(aIni);
+            aIni.allowed_purposes.map(function (a)
+            {
+               purposes.map(function (p)
+                {
+                    if (p.attributes.id == a)
+                    {
+                        p.active = true;
+                    }
+                    // else if (!p.active)
+                    // {
+                    //     p.active = false;
+                    // }
+                });
+            });
+        },
+        methods: {
+          get_aip_json: function()
+          {
+              let ajson = {
+                  allowed_purposes: this.getAllowed(),
+              };
+              return JSON.stringify(ajson);
+          },
+          getAllowed: function()
+          {
+              let ap = [];
+              this.purposes.map(function (p)
+              {
+                  if (p.active)
+                  {
+                      ap.push(p.attributes.id);
+                  }
+              });
+              return ap;
+          },
+        },
+        template: '<div class="row">' +
+        '<div class="col-6">' +
+        '<input v-bind:value="get_aip_json()" readonly>' +
+        '<li v-for="p in purposes"><label><input type="checkbox" v-model="p.active">{{p.attributes.name}}</label></li>' +
+        '</div> ' +
+        '<div class="col-6"><pre>{{ purposes }}</pre></div>' +
+        '</div>'
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            purposes: {},
+        },
+        beforeMount: function() {
+            this.purposes = JSON.parse(this.$el.attributes['data-purposes'].value);
+        }
+    });
+
+
+</script>
