@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>parent_id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% purposes.each do |purpose| %>
+      <tr>
+        <td><%= purpose.id %></td>
+        <td><%= purpose.name %></td>
+        <td><%= purpose.parent_id %></td>
+        <td><%= link_to 'Show', purpose %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
