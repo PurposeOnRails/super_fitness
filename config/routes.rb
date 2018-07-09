@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   post   '/signup',  to: 'users#create'
 
   resources :users
-  resources :access_codes
   resources :heart_rate_logs
   resources :step_day_logs
+
+  resources :access_codes
+  resources :purposes
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'

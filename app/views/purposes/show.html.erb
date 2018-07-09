@@ -1,0 +1,16 @@
+<h1>Purpose</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @purpose.name %>
+</p>
+
+<p>
+  <strong>ParentId:</strong>
+  <%= @purpose.parent_id %>
+</p>
+
+<h2>Direct Children</h2>
+
+<%= render 'table', purposes: @purpose.children %>
+
+<%= link_to 'Back', purposes_path %>
