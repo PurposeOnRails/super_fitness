@@ -40,54 +40,29 @@
         props: ['name', 'allowedini'],
         data: function () {
             return {
-                purposes: {}
+                purposes: {},
+                allowed: [],
             }
         },
         beforeMount: function() {
             this.purposes = this.$parent.purposes;
-            let purposes = this.purposes; // for map
             let aIni = JSON.parse(this.allowedini);
-            console.log(aIni);
-            aIni.allowed_purposes.map(function (a)
-            {
-               purposes.map(function (p)
-                {
-                    if (p.attributes.id == a)
-                    {
-                        p.active = true;
-                    }
-                    // else if (!p.active)
-                    // {
-                    //     p.active = false;
-                    // }
-                });
-            });
+            this.allowed = aIni.allowed_purposes;
+
         },
         methods: {
           get_aip_json: function()
           {
               let ajson = {
-                  allowed_purposes: this.getAllowed(),
+                  allowed_purposes: this.allowed,
               };
               return JSON.stringify(ajson);
-          },
-          getAllowed: function()
-          {
-              let ap = [];
-              this.purposes.map(function (p)
-              {
-                  if (p.active)
-                  {
-                      ap.push(p.attributes.id);
-                  }
-              });
-              return ap;
           },
         },
         template: '<div class="row">' +
         '<div class="col-6">' +
         '<input v-bind:value="get_aip_json()" readonly>' +
-        '<li v-for="p in purposes"><label><input type="checkbox" v-model="p.active">{{p.attributes.name}}</label></li>' +
+        '<li v-for="p in purposes"><label><input type="checkbox" :value="p.attributes.id" v-model="allowed">{{p.attributes.name}}</label></li>' +
         '</div> ' +
         '<div class="col-6"><pre>{{ purposes }}</pre></div>' +
         '</div>'
