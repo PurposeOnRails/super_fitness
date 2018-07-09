@@ -2,7 +2,11 @@ require "application_system_test_case"
 
 class HeartRateLogsTest < ApplicationSystemTestCase
   setup do
-    @heart_rate_log = heart_rate_logs(:one)
+    @heart_rate_log = HeartRateLog.new(
+      heart_rate: { some: 'json' }.to_json,
+      date: Date.today
+    )
+    @heart_rate_log.save
   end
 
   test "visiting the index" do
