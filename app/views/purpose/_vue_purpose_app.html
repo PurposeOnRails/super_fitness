@@ -1,7 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js"></script>
+
+
 <style type="text/css">
     .purpose-selector small
     {
         color: #999;
+    }
+    .purpose-selector a
+    {
+        cursor: pointer;
+        color: #007bff !important;
+    }
+    .purpose-selector a:hover
+    {
+        text-decoration: underline !important;
+
     }
 </style>
 
@@ -9,28 +22,47 @@
     <div class="purpose-selector">
 
         <small>{{ allowed.length }} purposes allowed
-            <a data-toggle="modal" :data-target="'#'+modalName()" href="#">
+            <a data-toggle="modal" :data-target="'#'+modalName">
                 Edit
+            </a>
+            <a v-if="canCopy" v-on:click="copy()">
+                Copy
+            </a>
+            <span v-if="!canCopy">Copied</span>
+            <a v-if="canPaste" v-on:click="paste()">
+                Paste
             </a>
         </small>
 
-        <input v-bind:value="get_aip_json()" :name="formName()" readonly type="hidden">
+        <input v-bind:value="aipJson" :name="formName" readonly type="hidden">
 
         <!-- start of modal -->
-        <div class="modal fade" :id="modalName()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" :id="modalName" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Edit allowed Purposes for {{name}}</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit allowed Purposes for {{propertyName}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div v-for="p in purposes">
-                            <label class="form-check-label">
-                            <input type="checkbox" :value="p.attributes.id" v-model="allowed">
-                            {{p.attributes.name}}</label>
+                        <div v-for="p in getParentPurposes()">
+                            <label class="form-check-label" >
+                            <input
+                                    type="checkbox"
+                                    :value="p.attributes.id"
+                                    v-model="allowed"
+                                    v-on:click="cascadePurposeValue(p.attributes.id)"
+                            >
+                                <strong>{{p.attributes.name}}</strong></label>
+                            <ul>
+                                <li v-for="cp in getChildPurposes(p.attributes.id)">
+                                    <label class="form-check-label">
+                                    <input type="checkbox" :value="cp.attributes.id" v-model="allowed">
+                                    {{cp.attributes.name}}</label>
+                                </li>
+                            </ul>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Finish</button>
@@ -46,6 +78,26 @@
 
 <script>
 
+    Vue.component('bums', {
+       data: function()
+       {
+           return {
+               test: [],
+           }
+       },
+        beforeCreate: function()
+        {
+            this.test = [99];
+        },
+        methods: {
+            setTest: function()
+            {
+                this.test = [4];
+            }
+        },
+        template: '<span>{{test}} <a v-on:click="setTest">blubb</a></span>',
+    });
+
     Vue.component('purpose-selector', {
         props: [
             'entityName',
@@ -54,18 +106,20 @@
         ],
         data: function () {
             return {
-                purposes: {},
-                allowed: [],
+            purposes: [],
+            allowed: [],
             }
         },
+
         beforeMount: function() {
             this.purposes = this.$parent.purposes;
             let aIni = JSON.parse(this.allowedPurposes);
             this.allowed = aIni.allowed_purposes;
+
         },
         template: '#purpose-template',
-        methods: {
-            get_aip_json: function()
+        computed: {
+            aipJson: function()
             {
                 let ajson = {
                     allowed_purposes: this.allowed,
@@ -79,7 +133,82 @@
             modalName: function()
             {
                 return this.propertyName + '_modal';
-            }
+            },
+            clipboard: function()
+            {
+                return this.$parent.clipboard;
+            },
+            canCopy: function()
+            {
+                // looping the array would be more efficient but lets keep the code concise
+                return JSON.stringify(this.allowed) !== JSON.stringify(this.clipboard);
+            },
+            canPaste: function()
+            {
+                return this.clipboard.length > 0 && this.canCopy;
+            },
+        },
+        methods: {
+
+
+            getChildPurposes: function(parentId)
+            {
+                return this.purposes.filter(function(p)
+                {
+                    return  p.attributes.parent_id === parentId;
+                });
+            },
+            getParentPurposes: function()
+            {
+                return this.purposes.filter(function(p)
+                {
+                    return typeof(p.attributes.parent_id) === "undefined";
+                });
+            },
+            /*
+                @todo: major bug!
+                this ONLY works as expected in firefox so far, because
+                all other browser update the model before the event for
+                some reason. we need a different way to find out if
+                the checkbox was checked or unchecked
+             */
+            cascadePurposeValue: function(id)
+            {
+
+                // get child purpose ids
+                let cp = this.getChildPurposes(id);
+                let cpIds = [];
+                cp.map(function (p)
+                {
+                    cpIds.push(p.attributes.id);
+                });
+
+                let allowed = this.allowed;
+                let parentAllowed = !allowed.includes(id); // seems like this is before change
+
+                if (parentAllowed)
+                {
+                    // push ids into allowed unless they are already in
+                    this.allowed = this.allowed.concat(cpIds.filter(function(c) { return !allowed.includes(c); }))
+                }
+                else
+                {
+                    // remove child ids from allowed
+                    this.allowed = allowed.filter(function(c) {  return !cpIds.includes(c)});
+                }
+            },
+            arrayClone(array) {
+                return array;
+            },
+            copy: function()
+            {
+                this.$emit('copy', this.allowed);
+            },
+            paste: function()
+            {
+                this.allowed = this.clipboard;
+            },
+
         }
     });
 
@@ -87,9 +216,18 @@
         el: '#purpose-enabled',
         data: {
             purposes: {},
+            clipboard: [],
         },
         beforeMount: function() {
             this.purposes = JSON.parse(this.$el.attributes['data-purposes'].value);
+        },
+        methods:
+        {
+            setClipboard: function(content)
+            {
+                console.log("parent set:" + content);
+                this.clipboard = content;
+            }
         }
     });
 

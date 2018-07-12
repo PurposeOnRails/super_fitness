@@ -7,12 +7,15 @@
     <div class="col-md-6">
       <div class="form-group"><%= f.label :name %>
         <%= f.text_field :name, :class => "form-control" %>
-        <purpose-selector entity-name="user" property-name="name" allowed-purposes="<%= @user.name_aip %>"></purpose-selector>
+        <purpose-selector entity-name="user"
+                          property-name="name"
+                          allowed-purposes="<%= @user.name_aip %>"
+                          @copy="setClipboard"></purpose-selector>
       </div>
 
       <div class="form-group"><%= f.label :date_of_birth %>
         <%= f.text_field :date_of_birth, :class => "form-control" %>
-      <purpose-selector entity-name="user" property-name="date_of_birth" allowed-purposes="<%= @user.date_of_birth_aip %>"></purpose-selector>
+      <purpose-selector entity-name="user" property-name="date_of_birth" allowed-purposes="<%= @user.date_of_birth_aip %>" @copy="setClipboard"></purpose-selector>
       </div>
     </div>
 
@@ -21,12 +24,12 @@
       <div class="form-group">
         <%= f.label :gender %>
         <%= f.text_field :gender, :class => "form-control" %>
-        <purpose-selector entity-name="user"  property-name="gender" allowed-purposes="<%= @user.gender_aip %>"></purpose-selector>
+        <purpose-selector entity-name="user"  property-name="gender" allowed-purposes="<%= @user.gender_aip %> " @copy="setClipboard"></purpose-selector>
       </div>
 
       <div class="form-group"><%= f.label :phone_number %>
         <%= f.text_field :phone_number, :class => "form-control" %>
-      <purpose-selector entity-name="user" property-name="phone_number" allowed-purposes="<%= @user.phone_number_aip %>"></purpose-selector>
+      <purpose-selector entity-name="user" property-name="phone_number" allowed-purposes="<%= @user.phone_number_aip %>" @copy="setClipboard"></purpose-selector>
       </div>
     </div>
 

@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'rails', path: "/home/tpei/Code/rails"
+gem 'rails', path: "../rails"
 
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
@@ -31,7 +31,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails-controller-testing'
 
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
 # Use ActiveStorage variant
