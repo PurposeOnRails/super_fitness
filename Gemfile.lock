@@ -9,7 +9,7 @@ GIT
       railties (>= 5.0)
 
 PATH
-  remote: /Users/Oleg1/Documents/Wille/Studium/TU/Semester 4/por/rails
+  remote: ../rails
   specs:
     actioncable (6.0.0.alpha)
       actionpack (= 6.0.0.alpha)
