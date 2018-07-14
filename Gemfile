@@ -43,8 +43,6 @@ gem 'jquery-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'faker'
 end
 
@@ -53,7 +51,8 @@ group :development do
   gem 'web-console', github: 'rails/web-console'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'awesome_print'
-
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
