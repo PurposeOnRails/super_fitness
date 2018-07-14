@@ -8,7 +8,6 @@
 require 'securerandom'
 require 'date'
 
-
 def possible_purposes
   (1..17).to_a
 end
@@ -74,7 +73,6 @@ def random_step_log(user_id)
     user_id: user_id
   )
 end
-
 
 10_000.times do |i|
   puts i
