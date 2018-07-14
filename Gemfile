@@ -52,6 +52,12 @@ group :development do
   gem 'web-console', github: 'rails/web-console'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'awesome_print'
+
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :test do
