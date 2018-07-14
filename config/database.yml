@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: super_fitness_production
-  username: super_fitness
-  password: <%= ENV['SUPER_FITNESS_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_PASS'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PW'] %>
