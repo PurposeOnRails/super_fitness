@@ -14,8 +14,9 @@ end
 
 def random_purposes
   used_purposes_count = possible_purposes.sample
-  # 9 is always allowed for debugging purposes
-  purposes = used_purposes_count.times.map { possible_purposes.sample }.uniq.sort + [9]
+  purposes = used_purposes_count.times.map { possible_purposes.sample }
+  purposes << 9 # always allowed for debugging purposes
+  purposes.uniq.sort
 end
 
 def random_purpose_string
