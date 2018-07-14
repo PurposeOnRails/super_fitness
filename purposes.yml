@@ -4,62 +4,62 @@ health:
   name: health
 health_summaries:
   id: 2
-  name: health_summaries
+  name: health summaries
   parent_id: 1
 health_recommendations:
   id: 3
-  name: health_recommendations
+  name: health recommendations
   parent_id: 1
 health_analysis:
   id: 4
-  name: health_analysis
+  name: health analysis
   parent_id: 1
 insurance:
   id: 5
   name: insurance
 insurance_discounts:
   id: 6
-  name: insurance_discounts
+  name: insurance discounts
   parent_id: 5
 insurance_liability:
   id: 7
-  name: insurance_liability
+  name: insurance liability
   parent_id: 5
 research:
   id: 8
   name: research
 cancer_research:
   id: 9
-  name: cancer_research
+  name: cancer research
   parent_id: 8
 military_research:
   id: 10
-  name: military_research
+  name: military research
   parent_id: 8
 advertisement:
   id: 11
   name: advertisement
 internal_advertisement:
   id: 12
-  name: internal_advertisement
+  name: internal advertisement
   parent_id: 11
 internal_telephone_advertisement:
   id: 13
-  name: internal_telephone_advertisement
+  name: internal telephone advertisement
   parent_id: 12
 internal_email_advertisement:
   id: 14
-  name: internal_email_advertisement
+  name: internal email advertisement
   parent_id: 12
 external_advertisement:
   id: 15
-  name: external_advertisement
+  name: external advertisement
   parent_id: 11
 external_telephone_advertisement:
   id: 16
-  name: external_telephone_advertisement
+  name: external telephone advertisement
   parent_id: 15
 external_email_advertisement:
   id: 17
-  name: external_email_advertisement
+  name: external email advertisement
   parent_id: 15
