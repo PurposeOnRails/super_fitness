@@ -33,6 +33,8 @@ gem 'rails-controller-testing'
 
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
+gem 'faker'
+gem 'listen', '>= 3.0.5', '< 3.2'
 
 # Use ActiveStorage variant
 # gem 'image_processing', '~> 1.2'
@@ -43,16 +45,20 @@ gem 'jquery-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'better_errors'
-  gem 'binding_of_caller'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', github: 'rails/web-console'
-  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'awesome_print'
   gem 'pry'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :test do

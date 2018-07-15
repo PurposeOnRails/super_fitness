@@ -1,8 +1,7 @@
 class ApiController < ApplicationController
 
   def retrieve_user
-    # user = User.for(purpose).find(id)
-    user = User.find(id)
+    user = User.for(purpose).find(id)
     render json: user.as_json(include_steps: false, include_heart_rate: false)
   end
 

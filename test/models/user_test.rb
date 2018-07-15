@@ -46,7 +46,7 @@ class UserTest < ActiveSupport::TestCase
     mixed_case = 'SwAg@YoLo.COM'
     @user.email = mixed_case
     @user.save
-    assert_equal mixed_case.downcase, @user.reload.email
+    assert_equal mixed_case.downcase, User.find(@user.id).email
   end
 
   test 'password is present' do
@@ -72,7 +72,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal 2, @user.step_day_logs.count
     assert_equal 10_556,
-      @user.step_day_logs.find_by(date: Date.today).step_count
+      StepDayLog.where(user_id: @user.id, date: Date.today).first.step_count
   end
 
   test 'can create and access HeartRateLogs' do
@@ -86,7 +86,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal 2, @user.heart_rate_logs.count
     assert_equal ({ some: 'json' }.to_json),
-      @user.heart_rate_logs.find_by(date: Date.yesterday).heart_rate
+      HeartRateLog.where(user_id: @user.id, date: Date.yesterday).first.heart_rate
   end
 
   test 'as_json return appropriate data' do
