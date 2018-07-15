@@ -192,10 +192,15 @@
 
                 // get child purpose ids
                 let cp = this.getChildPurposes(id);
+                let getChildP = this.getChildPurposes;
                 let cpIds = [];
                 cp.map(function (p)
                 {
                     cpIds.push(p.attributes.id);
+                    let ccp = getChildP(p.attributes.id);
+                    ccp.map(function (cp) {
+                        cpIds.push(cp.attributes.id);
+                    });
                 });
 
                 let allowed = this.allowed;
@@ -212,11 +217,6 @@
                     this.allowed = allowed.filter(function(c) {  return !cpIds.includes(c)});
                 }
 
-                let cpp = this.cascadePurposeValue;
-                cp.map(function (p)
-                {
-                    cpp(p.id);
-                });
 
             },
             arrayClone(array) {
