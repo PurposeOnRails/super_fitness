@@ -1,24 +1,54 @@
-# README
+# Purpose Generation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In purposes.seed you will find a demo purpose tree.
+Using this syntax you can model you purpose tree. Unfortunately,
+this syntax won't work for the model that is automatically generated
+from the yaml file. For this purpose there is a purpose_generator.rb
+file that you can use to generate the appropriate format.
+Simply execute `$ ruby purpose_generator.rb` to generate the appropriate
+file. If you encounter any errors, your schema is most likely corrupt.
 
-Things you may want to cover:
+Things to note:
+- every purpose needs the following attributes
+  - name: a descriptive, identifying name (unique!)
+  - children: embedded child purposes (optional)
+- node names are ignored, only the name attribute is used
 
-* Ruby version
 
-* System dependencies
+## Purposeful Selector Interface
 
-* Configuration
+Include the Purpose Selector Template, that contains styles + vue stuff + the component template. This can be done application wide.
 
-* Database creation
+````ruby
+    <%= render 'purpose/vue_purpose_app' %>
+````
 
-* Database initialization
+Set purposes in the controller:
 
-* How to run the test suite
+````ruby
+  def set_purposes
+    @purposes = Purpose.all
+  end
+````
 
-* Services (job queues, cache servers, search engines, etc.)
+Wrap all forms etc inside the vue app & initialize it with purposes:
 
-* Deployment instructions
+````html
+<div id="purpose-enabled" data-purposes="<%= @purposes.to_json %>">
 
-* ...
+...
+</div>
+
+````
+
+Assuming a normal rails form with names like `user[name]`, put purpose selector elements wherever you want them:
+
+````html
+      <div class="form-group"><%= f.label :name %>
+        <%= f.text_field :name, :class => "form-control" %>
+        <purpose-selector entity-name="user"
+                          property-name="name"
+                          allowed-purposes="<%= @user.name_aip %>"
+                          @copy="setClipboard"></purpose-selector>
+      </div>  
+````
