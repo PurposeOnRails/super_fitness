@@ -67,6 +67,15 @@
                                     <label class="form-check-label">
                                     <input type="checkbox" :value="cp.attributes.id" v-model="allowed">
                                     {{cp.attributes.name}}</label>
+
+                                    <ul>
+                                        <li v-for="ccp in getChildPurposes(cp.attributes.id)">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" :value="ccp.attributes.id" v-model="allowed">
+                                                {{ccp.attributes.name}}</label>
+                                        </li>
+                                    </ul>
+
                                 </li>
                             </ul>
                         </div>
@@ -202,6 +211,13 @@
                     // remove child ids from allowed
                     this.allowed = allowed.filter(function(c) {  return !cpIds.includes(c)});
                 }
+
+                let cpp = this.cascadePurposeValue;
+                cp.map(function (p)
+                {
+                    cpp(p.id);
+                });
+
             },
             arrayClone(array) {
                 return array;
