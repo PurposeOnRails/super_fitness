@@ -17,6 +17,14 @@
         <%= f.text_field :date_of_birth, :class => "form-control" %>
       <purpose-selector entity-name="user" property-name="date_of_birth" allowed-purposes="<%= @user.date_of_birth_aip %>" @copy="setClipboard"></purpose-selector>
       </div>
+
+      <div class="form-group">
+        <label for="heart_rate_aip">Heart Rate Logs</label>
+        <purpose-selector entity-name="user"
+          property-name="heart_rate_logs"
+          allowed-purposes="<%= @user.heart_rate_logs_aip %>"
+          @copy="setClipboard"></purpose-selector>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -31,7 +39,17 @@
         <%= f.text_field :phone_number, :class => "form-control" %>
       <purpose-selector entity-name="user" property-name="phone_number" allowed-purposes="<%= @user.phone_number_aip %>" @copy="setClipboard"></purpose-selector>
       </div>
+
+      <div class="form-group">
+        <label for="heart_rate_aip">Step Day Logs</label>
+        <purpose-selector entity-name="user"
+                          property-name="step_day_logs"
+                          allowed-purposes="<%= @user.step_day_logs_aip %>"
+                          @copy="setClipboard"></purpose-selector>
+      </div>
     </div>
+
+
 
   </div>
 

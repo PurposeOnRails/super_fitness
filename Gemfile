@@ -52,6 +52,7 @@ group :development do
   gem 'web-console', github: 'rails/web-console'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'awesome_print'
+  gem 'pry'
 end
 
 group :test do

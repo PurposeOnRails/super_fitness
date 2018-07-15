@@ -12,7 +12,7 @@ def parse(purpose, pid)
     end
   end
 
-  le_hash = { 'id' => node_id, 'name' => name }
+  le_hash = { 'id' => node_id, 'name' => name.gsub('_', ' ') }
   le_hash['parent_id'] = pid unless pid.nil?
 
   purposes.merge!(name => le_hash)
