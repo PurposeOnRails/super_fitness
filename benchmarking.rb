@@ -20,6 +20,7 @@ current_time = time
   current_time = Time.now
 end
 
+time = Time.now
 50.times do
   id = rand(1..10_000)
   url = "http://purls.slackernews.de/api/users/#{id}/purpose/Cok6dO3jD0lNoGqj6Y69LB9f0xJQaX06"
