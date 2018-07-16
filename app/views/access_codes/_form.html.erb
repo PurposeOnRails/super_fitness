@@ -12,16 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <div class="form-group"><%= form.label :description %>
+      <%= form.text_field :description, :class=>'form-control' %></div>
   </div>
 
   <div class="field">
-    <%= form.label :purpose_id %>
-    <%= form.collection_select(:purpose_id, Purpose.all, :id, :name) %>
+    <div class="form-group"><%= form.label :purpose_id %>
+      <%= form.collection_select(:purpose_id, Purpose.all, :id, :name, {}, {:class=>'form-control'}) %></div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <%= form.submit :class=>'btn btn-primary' %>
+
 <% end %>

@@ -67,6 +67,15 @@
                                     <label class="form-check-label">
                                     <input type="checkbox" :value="cp.attributes.id" v-model="allowed">
                                     {{cp.attributes.name}}</label>
+
+                                    <ul>
+                                        <li v-for="ccp in getChildPurposes(cp.attributes.id)">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" :value="ccp.attributes.id" v-model="allowed">
+                                                {{ccp.attributes.name}}</label>
+                                        </li>
+                                    </ul>
+
                                 </li>
                             </ul>
                         </div>
@@ -183,10 +192,15 @@
 
                 // get child purpose ids
                 let cp = this.getChildPurposes(id);
+                let getChildP = this.getChildPurposes;
                 let cpIds = [];
                 cp.map(function (p)
                 {
                     cpIds.push(p.attributes.id);
+                    let ccp = getChildP(p.attributes.id);
+                    ccp.map(function (cp) {
+                        cpIds.push(cp.attributes.id);
+                    });
                 });
 
                 let allowed = this.allowed;
@@ -202,6 +216,8 @@
                     // remove child ids from allowed
                     this.allowed = allowed.filter(function(c) {  return !cpIds.includes(c)});
                 }
+
+
             },
             arrayClone(array) {
                 return array;
