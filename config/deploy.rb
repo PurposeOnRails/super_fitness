@@ -4,6 +4,7 @@ lock "~> 3.11.0"
 server 'slackernews.de', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:TPei/super_fitness.git'
+set :branch,          'dontusefor'
 set :application,     'Purls'
 set :user,            'purls'
 set :puma_threads,    [4, 16]
@@ -75,7 +76,7 @@ namespace :deploy do
     end
   end
 
-  before :starting,     :check_revision
+  # before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   # after  :finishing,    :restart
