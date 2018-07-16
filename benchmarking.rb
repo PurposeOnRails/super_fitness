@@ -19,3 +19,13 @@ current_time = time
   puts "#{endpoint_shorthand}, #{res}, #{(Time.now - current_time).round(2)}s, total: #{(Time.now - time).round(2)}s"
   current_time = Time.now
 end
+
+50.times do
+  id = rand(1..10_000)
+  url = "http://purls.slackernews.de/api/users/#{id}/purpose/Cok6dO3jD0lNoGqj6Y69LB9f0xJQaX06"
+
+  uri = URI(url)
+  res = Net::HTTP.get_response(uri).is_a?(Net::HTTPSuccess) ? 'success' : 'failure'
+  puts "user, #{res}, #{(Time.now - current_time).round(2)}s, total: #{(Time.now - time).round(2)}s"
+  current_time = Time.now
+end
