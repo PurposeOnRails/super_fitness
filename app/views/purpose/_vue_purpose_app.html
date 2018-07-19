@@ -94,27 +94,7 @@
 </script>
 
 <script>
-
-    Vue.component('bums', {
-       data: function()
-       {
-           return {
-               test: [],
-           }
-       },
-        beforeCreate: function()
-        {
-            this.test = [99];
-        },
-        methods: {
-            setTest: function()
-            {
-                this.test = [4];
-            }
-        },
-        template: '<span>{{test}} <a v-on:click="setTest">blubb</a></span>',
-    });
-
+    
     Vue.component('purpose-selector', {
         props: [
             'entityName',
