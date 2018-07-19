@@ -9,6 +9,8 @@ purposes can be implemented with any kind of security scheme one might
 wish for.
 
 ![purpose demo](purpose_demo.png)
+![purpose demo](purposes.png)
+![purpose demo](access_codes.png)
 
 # Purpose Generation
 
