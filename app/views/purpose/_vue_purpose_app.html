@@ -65,7 +65,9 @@
                             <ul>
                                 <li v-for="cp in getChildPurposes(p.attributes.id)">
                                     <label class="form-check-label">
-                                    <input type="checkbox" :value="cp.attributes.id" v-model="allowed">
+                                    <input type="checkbox" :value="cp.attributes.id"
+                                           v-model="allowed"
+                                           v-on:click="cascadePurposeValue(cp.attributes.id)">
                                     {{cp.attributes.name}}</label>
 
                                     <ul>
