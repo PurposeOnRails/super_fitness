@@ -1,3 +1,17 @@
+# SuperFitness
+SuperFitness is a demo application using the PurposeOnRails Framework.
+SuperFitness allows users to manage some basic profile information as
+well as more complex related models for heart rates and step logs.
+Users can then set purposes for their data items which will be respected
+when consumers use the API to query for user data.
+AccessCodes add an abstraction layer on top of Purposes to showcase that
+purposes can be implemented with any kind of security scheme one might
+wish for.
+
+![purpose demo](purpose_demo.png)
+![purpose demo](purposes.png)
+![purpose demo](access_codes.png)
+
 # Purpose Generation
 
 In purposes.seed you will find a demo purpose tree.
