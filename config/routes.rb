@@ -21,8 +21,14 @@ Rails.application.routes.draw do
     get    'users/:id/steps/purpose/:code',
       to: 'api#get_steps'
 
+    get    'users/:id/steps/:mid/purpose/:code',
+           to: 'api#get_step'
+
     get    'users/:id/heart_rate_logs/purpose/:code',
       to: 'api#get_heart_rate_logs'
+
+    get    'users/:id/heart_rate_logs/:mid/purpose/:code',
+           to: 'api#get_heart_rate_log'
 
     get    'users/purpose/:code',
       to: 'api#retrieve_all_users'

@@ -11,13 +11,23 @@ class ApiController < ApplicationController
   end
 
   def get_steps
-    steps = User.for(purpose).find(id).heart_rate_logs.for(purpose)
+    steps = User.for(purpose).find(id).step_day_logs.for(purpose)
     render json: steps.map(&:as_json)
+  end
+
+  def get_step
+    step = User.for(purpose).find(id).step_day_logs.for(purpose).limit(1).offset(params[:mid])
+    render json: step.as_json
   end
 
   def get_heart_rate_logs
     logs = User.for(purpose).find(id).heart_rate_logs.for(purpose)
     render json: logs.map(&:as_json)
+  end
+
+  def get_heart_rate_log
+    log = User.for(purpose).find(id).heart_rate_logs.for(purpose).limit(1).offset(params[:mid])
+    render json: log.as_json
   end
 
   private
