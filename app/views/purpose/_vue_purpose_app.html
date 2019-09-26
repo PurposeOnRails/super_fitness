@@ -65,7 +65,9 @@
                             <ul>
                                 <li v-for="cp in getChildPurposes(p.attributes.id)">
                                     <label class="form-check-label">
-                                    <input type="checkbox" :value="cp.attributes.id" v-model="allowed">
+                                    <input type="checkbox" :value="cp.attributes.id"
+                                           v-model="allowed"
+                                           v-on:click="cascadePurposeValue(cp.attributes.id)">
                                     {{cp.attributes.name}}</label>
 
                                     <ul>
@@ -92,26 +94,6 @@
 </script>
 
 <script>
-
-    Vue.component('bums', {
-       data: function()
-       {
-           return {
-               test: [],
-           }
-       },
-        beforeCreate: function()
-        {
-            this.test = [99];
-        },
-        methods: {
-            setTest: function()
-            {
-                this.test = [4];
-            }
-        },
-        template: '<span>{{test}} <a v-on:click="setTest">blubb</a></span>',
-    });
 
     Vue.component('purpose-selector', {
         props: [
@@ -181,8 +163,8 @@
                 });
             },
             /*
-                @todo: major bug!
-                this ONLY works as expected in firefox so far, because
+                @todo: browser-specific!
+                this ONLY works as expected in firefox and chrome so far, because
                 all other browser update the model before the event for
                 some reason. we need a different way to find out if
                 the checkbox was checked or unchecked
@@ -247,7 +229,6 @@
         {
             setClipboard: function(content)
             {
-                console.log("parent set:" + content);
                 this.clipboard = content;
             }
         }
