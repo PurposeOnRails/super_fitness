@@ -31,12 +31,12 @@ class ApiController < ApplicationController
   end
 
   def overview_user
-    @user = User.for(purpose).find(id)
+    @user = User.find(id)
   end
 
   def overview_steps
-    @steps = User.for(purpose)
-                 .find(id).step_day_logs.for(purpose)
+    @steps = User
+                 .find(id).step_day_logs
                  .order(date: :desc)
   end
 
