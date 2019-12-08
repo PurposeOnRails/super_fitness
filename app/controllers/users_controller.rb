@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :redirect_if_logged_in, only: [:new, :create]
-  before_action :redirect_if_not_authorized, only: [:show, :edit]
+  before_action :redirect_if_not_authorized, only: [:edit]
   before_action :set_purposes, only: [:edit]
 
   def new

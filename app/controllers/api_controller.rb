@@ -30,6 +30,16 @@ class ApiController < ApplicationController
     render json: log.as_json
   end
 
+  def overview_user
+    @user = User.for(purpose).find(id)
+  end
+
+  def overview_steps
+    @steps = User.for(purpose)
+                 .find(id).step_day_logs.for(purpose)
+                 .order(date: :desc)
+  end
+
   private
 
   def id

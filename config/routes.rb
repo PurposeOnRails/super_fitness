@@ -30,6 +30,12 @@ Rails.application.routes.draw do
     get    'users/:id/heart_rate_logs/:mid/purpose/:code',
            to: 'api#get_heart_rate_log'
 
+    get    'users/:id/overview/user/purpose/:code',
+           to: 'api#overview_user'
+
+    get    'users/:id/overview/steps/purpose/:code',
+           to: 'api#overview_steps'
+
     get    'users/purpose/:code',
       to: 'api#retrieve_all_users'
   end
