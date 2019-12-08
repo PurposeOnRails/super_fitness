@@ -10,8 +10,8 @@ class ApiController < ApplicationController
     render json: users.map(&:as_json)
   end
 
-  def get_steps
-    steps = User.find(id).heart_rate_logs
+  def get_stepsß
+    steps = User.find(id).step_day_logs
     render json: steps.map(&:as_json)
   end
 
