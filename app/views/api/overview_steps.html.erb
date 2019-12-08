@@ -1,0 +1,9 @@
+<table class="table table-striped">
+  <% @steps.each do |step| %>
+    <tr>
+      <td><%= step.user.name %></td>
+      <td><%= step.step_count %></td>
+      <td><%= I18n.l step.date, format: :long %></td>
+    </tr>
+  <% end %>
+</table>
