@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     get    'users/:id/overview/steps/purpose/:code',
            to: 'api#overview_steps'
 
+    get    'users/:id/overview/heart/purpose/:code',
+           to: 'api#overview_heart'
+
     get    'users/purpose/:code',
       to: 'api#retrieve_all_users'
   end
