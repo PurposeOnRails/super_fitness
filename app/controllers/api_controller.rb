@@ -48,6 +48,12 @@ class ApiController < ApplicationController
 
   def id
     @id ||= params[:id]
+
+    if @id == "R" 
+      @id = rand(1000..2000)
+    end
+
+    @id
   end
 
   def purpose
