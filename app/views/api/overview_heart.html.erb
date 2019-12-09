@@ -2,10 +2,19 @@
   <% @logs.each do |log| %>
     <tr>
       <td><%= log.user.name %></td>
-      <td>      <% beats = JSON.parse(log.heart_rate) %>
-        <% beats.each do |beat| %>
-          <%= I18n.l DateTime.parse(beat["timestamp"]) %>
-          <%=  beat["heart_rate"] %>
+      <td>
+        <% if params[:noparse] %>
+          <%= log.heart_rate %>
+        <% else %>
+          <% beats = JSON.parse(log.heart_rate) %>
+          <% beats.each do |beat| %>
+            <% if params[:nodate] %>
+              <%= beat["timestamp"] %>
+            <% else %>
+              <%= I18n.l DateTime.parse(beat["timestamp"]) %>
+            <% end %>
+            <%= beat["heart_rate"] %>
+          <% end %>
           <br>
         <% end %>
       </td>
