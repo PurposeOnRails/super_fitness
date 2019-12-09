@@ -21,7 +21,7 @@ class ApiController < ApplicationController
   end
 
   def get_heart_rate_logs
-    logs = User.for(purpose).find(id).heart_rate_logs.for(purpose)
+    logs = User.for(purpose).find(id).heart_rate_logs.for(purpose).limit(24)
     render json: logs.map(&:as_json)
   end
 
@@ -38,6 +38,10 @@ class ApiController < ApplicationController
     @steps = User.for(purpose)
                  .find(id).step_day_logs.for(purpose)
                  .order(date: :desc)
+  end
+
+  def overview_heart
+    @logs = User.for(purpose).find(id).heart_rate_logs.for(purpose).limit(24)
   end
 
   private
